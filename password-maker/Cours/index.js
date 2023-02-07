@@ -175,26 +175,108 @@ arrayNumber.push(17, 45); //ajouter un élément dans le tableau
 
 //Filter, sort , map
 
-console.log(arrayNumber.filter((number) => number > 10));
-console.log(arrayNumber.sort()); //les nombres sont triés par unité dizaine...
-console.log(arrayNumber.sort((a, b) => a - b)); //classés par ordre croissant et b-a par ordre decroissant
+// console.log(arrayNumber.filter((number) => number > 10));
+// console.log(arrayNumber.sort()); //les nombres sont triés par unité dizaine...
+// console.log(arrayNumber.sort((a, b) => a - b)); //classés par ordre croissant et b-a par ordre decroissant
 
-document.body.innerHTML = arrayNumber
-  .map((number) => `<li>${number}</li>`)
-  .join("");
+// document.body.innerHTML = arrayNumber
+//   .map((number) => `<li>${number}</li>`)
+//   .join("");
 
 //--------------------------------------------------------------
 //Méthodes Objects
 
-document.body.innerHTML = data
-    .filter((user) => user.admin === false)
-    .filter((user) => user.pseudo.includes("i"))
-    .sort((a , b) => b.age - a.age)
-  .map(
-    (user) => `<div class="user-card">
-<h2>${user.pseudo}</h2>
-<p>age : ${user.age} ans</p>
-<p>status : ${user.admin ? "Modérateur" : "Membre"}</p> 
-</div>`
-  )
-  .join(" ");
+// document.body.innerHTML = data
+//     .filter((user) => user.admin === false)
+//     .filter((user) => user.pseudo.includes("i"))
+//     .sort((a , b) => b.age - a.age)
+//   .map(
+//     (user) => `<div class="user-card">
+// <h2>${user.pseudo}</h2>
+// <p>age : ${user.age} ans</p>
+// <p>status : ${user.admin ? "Modérateur" : "Membre"}</p> 
+// </div>`
+//   )
+//   .join(" ");
+
+//Les dates 
+
+//La date classique
+let date = new Date();
+
+//Timestamp 
+let timestamp = Date.parse(date);
+//console.log(timestamp);
+
+//isostring
+let iso = date.toISOString();
+
+function dateParser(chaine) {
+    let newDate = new Date(chaine).toLocaleDateString("fr-FR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+    });
+    return newDate;
+}
+// console.log(dateParser(date));
+// console.log(dateParser(timestamp));
+// console.log(dateParser(iso));
+
+//------------------------------------------
+//Le destructuring
+//-----------------------------------------------
+let moreData = {
+    destVar: ["Element 1", "Element 2"],
+};
+const { destVar } = moreData // est la simplification écriture de :const destVar = moreData.destVar
+// console.log(moreData.destVar);
+// console.log(destVar);
+
+let array5 = [70, 80, 90];
+let [x, y, z] = array5;
+//console.log(x, y, z);
+
+const dateDestructuring = (chaine) => {
+    let newDate = chaine.split("T")[0];
+    let [y, m, d] = newDate.split("-");
+    return [d, m, y].join("/")
+     
+};
+//console.log(dateDestructuring(iso));
+
+//-------------------------------------
+//Les Datasets
+//----------------------------
+const h3js = document.getElementById("javascript");
+//console.log(h3js.dataset.lang);
+
+
+const h3 = document.querySelectorAll("h3");
+//h3.forEach((language) => console.log(language.dataset.lang));
+
+
+//---------------------------------------
+//Les Regex
+//-----------------------------
+let mail = "from_scratch33@gmail.com";
+//console.log(mail.search(/from/));//test recherche de termes contenus dans l' adresse?
+
+//console.log(mail.replace(/from/, "de"));//remplace from par de
+//console.log(mail.match(/SCratch/i));//Le i évite la casse 
+ //console.log(mail.match(/[zug]/));//recherche d'un élément(lettre)ou terme présent dans le mail
+ //console.log(mail.match(/[123]/));//recherche d'un élément(chiffre)ou terme présent dans le mail
+
+ //Matcher Tous les chiffres
+ //console.log(mail.match(/\d/));recherche de chiffres
+
+ //Matcher toutes les lettres
+ //console.log(mail.match(/[a-z]/));
+
+ //Regex adresse mail
+ //console.log(mail.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i));Verification adresse mail
+
+let separator = 265678890
+  console.log(separator.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
