@@ -21,7 +21,7 @@ form {
   background: white;
   display: grid;
   grid-template-rows: repeat(4, 104px);
-  padding: 60px 45px 30px;
+  padding: 60px 45px 42px;
   border-radius: 16px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   position: relative;
@@ -93,6 +93,7 @@ input[type="submit"] {
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: 0.3s ease;
+  margin-left: 6rem;
 }
 input[type="submit"]:hover {
   filter: brightness(105%);
